@@ -1,0 +1,29 @@
+.day-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.time-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.time-container:first-child .lines {
+    border-top: 1px solid gray;
+}
+
+.label {
+    height: 100%;
+    flex-basis: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.lines {
+    flex: 1;
+    border-bottom: 1px solid gray;
+    height: 100%;
+}

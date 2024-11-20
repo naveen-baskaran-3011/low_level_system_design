@@ -1,0 +1,7 @@
+#root, .full-page-application {
+  height: 100%;
+}
+
+.full-page-application {
+  position: relative;
+}
