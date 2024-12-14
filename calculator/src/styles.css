@@ -1,0 +1,39 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-background {
+    background-color: red;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.input-area {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    height: 65px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    .question {
+        flex: 1;
+    }
+    .answer {
+        flex: 1;
+    }
+}
+
+.buttons-areas {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+    gap: 5px;
+}
+  
