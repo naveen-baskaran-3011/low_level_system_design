@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { createPortal } from "react-dom";
 
 export default function({
     showDialog,
@@ -19,7 +20,7 @@ export default function({
         }
     }, [showDialog])
 
-    return <dialog
+    return createPortal(<dialog
         ref={dialogRef}
         onClose={onClose}
         onKeyDown={(event) => {
@@ -59,5 +60,5 @@ export default function({
                     <button onClick={onClose}>Close</button>
                 </footer>
             </section>
-        </dialog>
+        </dialog>, document.body)
 }
