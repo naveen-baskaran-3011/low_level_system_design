@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './App.styles.css';
 
 function formatTime(milliSeconds) {
@@ -14,20 +14,36 @@ function formatTime(milliSeconds) {
 
 export default function App() {
     const [mS, setMS] = useState(0);
-    const [status, setStatus] = useState('reset');
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
+    const animationFrameRef = useRef(0);
+    let currentTime = useRef(Date.now());
+
+    const timerFunction = useCallback(() => {
+        setMS(Date.now() - currentTime.current);
+        animationFrameRef.current = requestAnimationFrame(timerFunction);
+    }, []);
 
     useEffect(() => {
-        let interval;
-        if(status === 'started') {
-            interval = setInterval(() => {
-                setMS(prev => prev+10);
-            }, 10);
-        } else if(status === 'reset') {
-            setMS(0);
-        }
+        return () => cancelAnimationFrame(animationFrameRef.current);
+    }, []);
 
-        return () => interval && clearInterval(interval)
-    }, [status]);
+    const onStart = useCallback(() => {
+        currentTime.current = Date.now() - mS;
+        setIsTimerRunning(true);
+        animationFrameRef.current = requestAnimationFrame(timerFunction)
+    }, [mS]);
+
+    const onStop = () => {
+        setIsTimerRunning(false);
+        cancelAnimationFrame(animationFrameRef.current);
+    };
+
+    const onReset = () => {
+        setIsTimerRunning(false);
+        setMS(0);
+        currentTime.current = Date.now();
+        cancelAnimationFrame(animationFrameRef.current);
+    }
 
     return <div style={{
         width: 'fit-content',
@@ -42,9 +58,9 @@ export default function App() {
         <h2>Stopwatch</h2>
         <h1>{formatTime(mS)}</h1>
         <div className="button-grp">
-            <button onClick={() => setStatus('started')} disabled={status === 'started'}>Start</button>
-            <button onClick={() => setStatus('paused')} disabled={['reset', 'paused'].includes(status)}>Stop</button>
-            <button onClick={() => setStatus('reset')} disabled={mS === 0}>Reset</button>
+            <button onClick={onStart} disabled={isTimerRunning}>Start</button>
+            <button onClick={onStop} disabled={!isTimerRunning}>Stop</button>
+            <button onClick={onReset} disabled={mS === 0}>Reset</button>
         </div>
     </div>;
 }
