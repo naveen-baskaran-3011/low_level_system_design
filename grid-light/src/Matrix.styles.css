@@ -1,0 +1,13 @@
+.row {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+.column {
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+}
+.active {
+    background-color: green;
+}
