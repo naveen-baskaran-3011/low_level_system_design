@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+.list {
+    height: 250px;
+    width: 300px;
+    border: 1px solid;
+}
+.operators {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: auto 5px;
+    gap: 10px;
+}
