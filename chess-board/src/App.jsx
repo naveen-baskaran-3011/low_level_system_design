@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import './App.css';
 
 const chess_array = JSON.stringify(Array(8).fill(Array(8).fill(0)));
@@ -79,10 +79,10 @@ export default function App() {
     // const [chessBoard, setChessBoard] = useState(JSON.parse(chess_array));
     const chessBoard = JSON.parse(chess_array);
     const [selected, setSelected] = useState([null, null]);
-    const clickHandler = (rowIdx, columnIdx) => {
+    const clickHandler = useCallback((rowIdx, columnIdx) => {
         setSelected([rowIdx, columnIdx]);
         // setChessBoard([...calculatePossibleDiagonals(rowIdx, columnIdx)]);
-    };
+    }, []);
     return <div style={{
         display: 'flex',
         flexDirection: 'column',
