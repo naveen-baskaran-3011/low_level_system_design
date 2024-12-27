@@ -1,0 +1,44 @@
+.container {
+    /* width: fit-content; */
+    user-select: none;
+}
+
+.main-content {
+    display: flex;
+    gap: 5px;
+    margin: 10px;
+    align-items: center;
+}
+
+.main-content .icon {
+    display: flex;
+}
+
+.main-content.folder {
+    cursor: pointer;
+}
+
+.sub-node {
+    margin: 20px;
+    margin-top: inherit;
+}
+
+.label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.options-container {
+    display: flex;
+}
+
+.options-container .icons {
+    display: flex;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.options-container .icons:hover {
+    background-color: lightgray;
+}
