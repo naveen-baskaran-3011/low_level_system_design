@@ -1,0 +1,32 @@
+.accordian-container {
+    margin: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.content {
+    padding: 5px;
+}
+
+.symbol {
+    padding: 5px;
+    height: 15px;
+    width: 15px;
+    background-color: gray;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
