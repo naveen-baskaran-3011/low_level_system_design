@@ -204,7 +204,10 @@ export default function TypeAheadOffline() {
     const [suggestionList, setSuggestionList] = useState([]);
     const [focusId, setFocusId] = useState(null);
 
-    return <div>
+    return <div style={{
+        flexBasis: "50%"
+    }}>
+        Offline
         <input
             style={{
                 width: "100%"
@@ -217,25 +220,25 @@ export default function TypeAheadOffline() {
                 })] : []);
             }}
             onKeyDown={event => {
-                if(event.key === 'ArrowDown') {
+                if (event.key === 'ArrowDown') {
                     event.preventDefault();
                     setFocusId(prevFocusId => {
-                        if(prevFocusId === null || prevFocusId === suggestionList.length - 1) {
+                        if (prevFocusId === null || prevFocusId === suggestionList.length - 1) {
                             return 0;
                         }
 
                         return ++prevFocusId;
                     });
-                } else if(event.key === 'ArrowUp') {
+                } else if (event.key === 'ArrowUp') {
                     event.preventDefault();
                     setFocusId(prevFocusId => {
-                        if(prevFocusId === null || prevFocusId === 0) {
+                        if (prevFocusId === null || prevFocusId === 0) {
                             return suggestionList.length - 1;
                         }
 
                         return --prevFocusId;
                     });
-                } else if(event.key === 'Enter' && focusId !== null) {
+                } else if (event.key === 'Enter' && focusId !== null) {
                     event.preventDefault();
                     setUsrInputValue(suggestionList[focusId]);
                     setSuggestionList([]);
